@@ -1,0 +1,6 @@
+{{ define "page"}}
+<h1>
+    {{ .Title }}
+</h1>
+{{ .Content | safeHTML }}
+{{end}}

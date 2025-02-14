@@ -1,0 +1,10 @@
+{{ define "page" }}
+  {{ if 0 }}
+    {{ $dat := resources.Get "js/dat.js" }}
+    {{ $main := resources.Get "js/main.js" }}
+    <script type="module" src="{{- $dat.RelPermalink -}}" defer></script>
+    <script type="module" src="{{- $main.RelPermalink -}}" defer></script>
+  {{ end }}
+
+  {{ .Content | safeHTML }}
+{{ end }}

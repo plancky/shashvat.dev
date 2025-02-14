@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
+
+@layer base {
+    :root {
+        /*
+    background-color: hsl(11, 80%, 62%);
+    */
+        /* green
+    --clr-primary-hsl-400: 126, 17%, 37%;
+    */
+        --clr-primary-hsl-400: 204, 81%, 12%;
+        --clr-primary-hsl-500: 0, 0%, 7%;
+        --clr-secondary-hsl-400: 42, 44%, 87%;
+        --clr-secondary-hsl-500: 241, 72%, 46%;
+
+        --clr-neutral-hsl-100: 0, 0%, 100%;
+        --clr-neutral-hsl-200: 221, 100%, 96%;
+        --clr-neutral-hsl-300: 241, 100%, 89%;
+        --clr-neutral-hsl-700: 224, 30%, 27%;
+
+        --clr-neutral-100: hsl(var(--clr-neutral-hsl-100));
+        --clr-neutral-200: hsl(var(--clr-neutral-hsl-200));
+        --clr-neutral-300: hsl(var(--clr-neutral-hsl-300));
+        --clr-neutral-700: hsl(var(--clr-neutral-hsl-700));
+
+        --clr-primary-400: hsl(var(--clr-primary-hsl-400));
+        --clr-primary-500: hsla(var(--clr-primary-hsl-500));
+        --clr-secondary-400: hsl(var(--clr-secondary-hsl-400));
+
+        --gradient-primary: linear-gradient(
+            var(--clr-primary-400),
+            var(--clr-secondary-400)
+        );
+
+        --gradient-to-transparent: linear-gradient(
+            var(--clr-primary-500),
+            hsl(var(--clr-secondary-hsl-500), 0)
+        );
+
+        --clr-accent-1: hsla(202, 89%, 44%, 0.6);
+        --clr-accent-2: 39, 100%, 56%;
+        --clr-accent-3: 166, 100%, 37%;
+        --clr-accent-4: 234, 85%, 45%;
+
+        --font-family-default: "HankenGrotesk", sans-serif;
+
+        --fw-regular: 500;
+        --fw-bold: 700;
+        --fw-black: 800;
+
+        --fs-400: 1.125rem;
+        --fs-500: 1.25rem;
+        --fs-600: 1.5rem;
+        --fs-700: 1.75rem;
+        --fs-800: 2rem;
+        --fs-900: 5rem;
+    }
+
+    h1 {
+        @apply text-4xl mb-8 mt-4;
+    }
+
+    h2 {
+        @apply text-2xl font-semibold;
+    }
+
+    h3 {
+        @apply text-xl font-semibold;
+    }
+
+    h4,
+    h5,
+    h6 {
+        @apply text-lg font-semibold;
+    }
+    p {
+        @apply text-2xl lg:text-lg lg:leading-relaxed;
+    }
+}
+/*Layout*/
+
+.content-grid,
+.full-width {
+    --padding-inline: 1rem;
+    --content-max-width: 900px;
+    --breakout-max-width: 1200px;
+
+    --breakout-size: calc(
+        (var(--breakout-max-width) - var(--content-max-width)) / 2
+    );
+
+    display: grid;
+    grid-template-columns:
+        [full-width-start] minmax(var(--padding-inline), 1fr)
+        [breakout-start] minmax(0, var(--breakout-size))
+        [content-start] min(
+            100% - (var(--padding-inline) * 2),
+            var(--content-max-width)
+        )
+        [content-end]
+        minmax(0, var(--breakout-size)) [breakout-end]
+        minmax(var(--padding-inline), 1fr) [full-width-end];
+}
+
+.content-grid > :not(.breakout, .full-width),
+.full-width > :not(.breakout, .full-width) {
+    grid-column: content;
+}
+
+.content-grid > .breakout,
+.full-width > .breakout {
+    grid-column: breakout;
+}
+
+.content-grid > .full-width,
+.full-width > .full-width,
+.full-width,
+.breakout > .full-width {
+    grid-column: full-width;
+    /*
+  display: grid;
+  grid-template-columns: inherit;
+*/
+}
+
+@layer components {
+    .cell {
+        @apply h-[20px] w-[20px] border-b-[1px] border-r-[1px] bg-black;
+    }
+
+    .cell-grid {
+        @apply grid h-screen w-screen grid-cols-[repeat(100,_minmax(20px,1fr))] grid-rows-[repeat(calc(100*_0.25),_minmax(0,1fr))] bg-red-300;
+    }
+    .include-classes {
+        @apply opacity-100;
+    }
+}

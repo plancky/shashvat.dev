@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v1</title>
+    <!--
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="/assets/sarabun/fontface.css" rel="stylesheet" />
+        -->
+
+    {{ partialCached "styles.html" . }}
+
+    {{ if $.Site.Params.katex }}{{ partial "katex.html" . }}{{ end }}
+  </head>
+
+  <body
+    class="content-grid font-body w-full min-h-screen grid-rows-[auto_minmax(0,1fr)_auto] bg-blue-900">
+    <header class="full-width row-span-1">
+      <a href="/" class="text-5xl leading-normal font-bold">Shashvat Jain</a>
+    </header>
+    <main class="full-width row-span-1 relative">
+      {{ block "page" . }}
+        <!-- Page Content from page/single.html, _default/<single/list>.html, , index.html -->
+      {{ end }}
+    </main>
+    <footer class="full-width">
+      <div
+        class="bg-black text-white h-20 full-width"
+        style="clip-path: ellipse(50% 80% at 50% 100%)">
+        <div class="flex items-center h-full justify-center gap-6">
+          <a
+            href="/posts/"
+            class="text-white h-fit leading-none no-underline text-xl">
+            Posts
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

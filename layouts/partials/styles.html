@@ -1,0 +1,64 @@
+<!-- Styles -->
+<!-- plugins + stylesheet -->
+{{ $styles := slice }}
+{{ $stylesLazy := slice }}
+{{ range site.Params.plugins.css }}
+  {{ if findRE "^http" .link }}
+    <link
+      crossorigin="anonymous"
+      media="all"
+      rel="stylesheet"
+      href="{{ .link | relURL }}"
+      {{ .attributes | safeHTMLAttr }} />
+  {{ else }}
+    {{ if not .lazy }}
+      {{ $styles = $styles | append (resources.Get .link) }}
+    {{ else }}
+      {{ $stylesLazy = $stylesLazy | append (resources.Get .link) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* main style */}}
+
+{{ $styles = $styles | append (resources.Get "css/input.css") }}
+
+{{ $styles = $styles | resources.Concat "css/style.css" }}
+{{ $styles = $styles | css.PostCSS }}
+
+{{ with $stylesLazy }}
+  {{ $stylesLazy = $stylesLazy | resources.Concat "css/style-lazy.css" }}
+  {{ $stylesLazy = $stylesLazy | css.PostCSS }}
+{{ end }}
+
+{{ if hugo.IsProduction }}
+  {{ $styles = $styles | resources.ExecuteAsTemplate "css/style.css" . | minify | fingerprint | resources.PostProcess }}
+
+  {{ with $stylesLazy }}
+    {{ $stylesLazy = $stylesLazy | resources.ExecuteAsTemplate "css/style-lazy.css" . | minify | fingerprint | resources.PostProcess }}
+  {{ end }}
+{{ else }}
+  {{ $styles = $styles | resources.ExecuteAsTemplate "css/style.css" . }}
+  {{ with $stylesLazy }}
+    {{ $stylesLazy = $stylesLazy | resources.ExecuteAsTemplate "css/style-lazy.css" . }}
+  {{ end }}
+{{ end }}
+
+{{/* styles */}}
+<link
+  href="{{ $styles.RelPermalink }}"
+  integrity="{{ $styles.Data.Integrity }}"
+  rel="stylesheet" />
+
+{{/* styles lazy */}}
+{{ with $stylesLazy }}
+  <link
+    defer
+    async
+    rel="stylesheet"
+    href="{{ $stylesLazy.RelPermalink }}"
+    integrity="{{ $stylesLazy.Data.Integrity }}"
+    media="print"
+    onload="this.media='all'; this.onload=null;" />
+{{ end }}
+<!-- End Styles -->
