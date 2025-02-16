@@ -1,9 +1,6 @@
 baseURL = 'https://hashvats.me/'
 languageCode = 'en-us'
-title = "Shashvat's Blog Site"
-
-[params]
-    katex = true
+title = "Shash.net"
 
 [markup.goldmark.renderer]
 unsafe = true

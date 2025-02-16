@@ -1,0 +1,10 @@
+# Other Configuration 
+katex = true
+
+# Author Info
+[author]
+    name="Shashvat Jain"
+    email="shashvat817@gmail.com"
+
+[heading]
+main="Shash"

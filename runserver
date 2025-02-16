@@ -1,1 +1,0 @@
-bunx tailwindcss -i ./_styles/input.css -o ./static/assets/styles/main.css --watch & hugo server --noHTTPCache --verbose

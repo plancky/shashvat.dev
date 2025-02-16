@@ -144,3 +144,4 @@ const setup_new_frame = () => {
 //Harsh_fig.mode = 0;
 
 setup_new_frame();
+

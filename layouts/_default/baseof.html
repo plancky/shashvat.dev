@@ -1,42 +1,141 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>v1</title>
-    <!--
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="/assets/sarabun/fontface.css" rel="stylesheet" />
-        -->
+<html
+    itemscope
+    lang="{{ site.LanguageCode | default `en-US` }}"
+    itemtype="http://schema.org/WebPage">
+    <head>
+        {{ partial "essentials/meta.html" . }}
 
-    {{ partialCached "styles.html" . }}
+        {{ partialCached "essentials/styles.html" . }}
 
-    {{ if $.Site.Params.katex }}{{ partial "katex.html" . }}{{ end }}
-  </head>
+        {{ if $.Site.Params.katex }}
+            {{ partial "essentials/katex.html" . }}
+        {{ end }}
 
-  <body
-    class="content-grid font-body w-full min-h-screen grid-rows-[auto_minmax(0,1fr)_auto] bg-blue-900">
-    <header class="full-width row-span-1">
-      <a href="/" class="text-5xl leading-normal font-bold">Shashvat Jain</a>
-    </header>
-    <main class="full-width row-span-1 relative">
-      {{ block "page" . }}
-        <!-- Page Content from page/single.html, _default/<single/list>.html, , index.html -->
-      {{ end }}
-    </main>
-    <footer class="full-width">
-      <div
-        class="bg-black text-white h-20 full-width"
-        style="clip-path: ellipse(50% 80% at 50% 100%)">
-        <div class="flex items-center h-full justify-center gap-6">
-          <a
-            href="/posts/"
-            class="text-white h-fit leading-none no-underline text-xl">
-            Posts
-          </a>
-        </div>
-      </div>
-    </footer>
-  </body>
+        {{ $random_color := resources.Get "js/random_color.js" }}
+        <script
+            type="module"
+            src="{{- $random_color.RelPermalink -}}"
+            defer></script>
+    </head>
+
+    <body
+        class="content-grid dark relative min-h-screen w-full grid-rows-[auto_1fr_auto] place-content-stretch place-items-stretch bg-background font-body text-foreground">
+        <header
+            class="full-width-gridless max-lg:content-grid pointer-events-none relative z-50 row-start-1 row-end-2 flex flex-initial py-10 lg:sticky lg:top-0 lg:px-10">
+            <div
+                class="pointer-events-auto flex flex-initial flex-col gap-8 lg:flex-col lg:justify-between lg:gap-6">
+                <a href="/" class="text-5xl font-bold leading-normal">
+                    {{ .Site.Title }}
+                </a>
+                <!-- main navbar -->
+                <ul
+                    id="nav-menu"
+                    class="navbar-nav pointer-events-auto order-3 flex gap-4 lg:flex-col lg:gap-3 text-accent-foreground">
+                    {{ $currentPage := . }}
+                    {{ range site.Menus.main }}
+                        {{ $menuURL := .URL | absLangURL }}
+                        {{ $pageURL:= $currentPage.Permalink | absLangURL }}
+                        {{ $active := eq $menuURL $pageURL }}
+                        {{ if .HasChildren }}
+                            <li class="nav-item nav-dropdown group relative">
+                                <span
+                                    class="nav-link {{ range .Children }}
+                                        {{ $childURL := .URL | absLangURL }}
+                                        {{ $active := eq $childURL $pageURL }}
+                                        {{ if $active }}active{{ end }}
+                                    {{ end }} inline-flex items-center">
+                                    {{ .Name }}
+                                    <svg
+                                        class="h-4 w-4 fill-current"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
+                                </span>
+                                <ul
+                                    class="nav-dropdown-list invisible opacity-0 group-hover:visible group-hover:opacity-100">
+                                    {{ range .Children }}
+                                        {{ $childURL := .URL | absLangURL }}
+                                        {{ $active := eq $childURL $pageURL }}
+                                        <li class="nav-dropdown-item">
+                                            <a
+                                                class="nav-dropdown-link {{ if $active }}
+                                                    active
+                                                {{- end -}}"
+                                                {{ if findRE `^http` .URL }}
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                {{ end }}
+                                                href="{{- if findRE `^#` .URL -}}
+                                                    {{- if not $.IsHome -}}
+                                                        {{- site.Home.RelPermalink -}}
+                                                    {{- end }}
+                                                    {{- .URL -}}
+                                                {{- else -}}
+                                                    {{- .URL | relLangURL -}}
+                                                {{- end -}}">
+                                                {{ .Name }}
+                                            </a>
+                                        </li>
+                                    {{ end }}
+                                </ul>
+                            </li>
+                        {{ else }}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link {{ if $active }}
+                                        active
+                                    {{- end -}}"
+                                    {{ if findRE `^http` .URL }}
+                                        target="_blank" rel="noopener"
+                                    {{ end }}
+                                    href="{{- if findRE `^#` .URL -}}
+                                        {{- if not $.IsHome -}}
+                                            {{- site.Home.RelPermalink -}}
+                                        {{- end }}{{- .URL -}}
+                                    {{- else -}}
+                                        {{- .URL | relLangURL -}}
+                                    {{- end -}}"
+                                    >{{ .Name }}</a
+                                >
+                            </li>
+                        {{ end }}
+                    {{ end }}
+                    {{ if site.Params.navigation_button.enable }}
+                        <li class="mt-4 inline-block lg:hidden">
+                            <a
+                                class="btn btn-outline-primary btn-sm"
+                                href="{{ site.Params.navigation_button.link | relLangURL }}">
+                                {{ site.Params.navigation_button.label }}
+                            </a>
+                        </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </header>
+        <main class="full-width relative row-start-2 row-end-3 self-stretch">
+            <div>
+                {{ block "page" . }}
+                    <!-- Page Content from page/single.html, _default/<single/list>.html, index.html -->
+                {{ end }}
+            </div>
+        </main>
+        <footer
+            class="full-width-gridless row-start-3 row-end-4 h-8 lg:sticky lg:bottom-0">
+            <div
+                class="full-width h-full bg-accent text-accent-foreground transition-colors duration-500"
+                style="clip-path: ellipse(50% 80% at 50% 100%)">
+                <!--
+                <div class="flex h-full items-center justify-center gap-6">
+                    <a
+                        href="/posts/"
+                        class="h-fit text-xl leading-none no-underline">
+                        Posts
+                    </a>
+                </div>
+                -->
+            </div>
+        </footer>
+    </body>
 </html>
