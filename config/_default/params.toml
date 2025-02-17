@@ -8,3 +8,6 @@ katex = true
 
 [heading]
 main="Shash"
+
+[connect]
+links = ["shashvat817@gmail.com", "@shashvat817"]

@@ -7,7 +7,7 @@
     }
 }
 
-@layer utilities {
+@layer base {
     /*Layout*/
     .desktop-padding {
         --padding-inline: var(--page-padding, 80px);

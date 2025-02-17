@@ -1,10 +1,17 @@
 {{ define "page" }}
-  {{ if 0 }}
     {{ $dat := resources.Get "js/dat.js" }}
     {{ $main := resources.Get "js/main.js" }}
     <script type="module" src="{{- $dat.RelPermalink -}}" defer></script>
     <script type="module" src="{{- $main.RelPermalink -}}" defer></script>
-  {{ end }}
 
-  {{ .Content | safeHTML }}
+    {{ .Content | safeHTML }}
+    <section
+        class="#w-[1080px] #h-[520px] !fixed inset-0 -z-10 row-span-full max-h-full overflow-hidden opacity-70">
+        <canvas
+            width="300"
+            height="300"
+            id="my_image"
+            class="absolute inset-0 overflow-hidden"
+            width=""></canvas>
+    </section>
 {{ end }}

@@ -22,16 +22,16 @@
     <body
         class="content-grid dark relative min-h-screen w-full grid-rows-[auto_1fr_auto] place-content-stretch place-items-stretch bg-background font-body text-foreground">
         <header
-            class="full-width-gridless max-lg:content-grid pointer-events-none relative z-50 row-start-1 row-end-2 flex flex-initial py-10 lg:sticky lg:top-0 lg:px-10">
+            class="full-width-gridless max-lg:content-grid pointer-events-none relative z-50 row-start-1 row-end-2 flex flex-initial py-10 lg:sticky lg:top-0 lg:justify-between lg:px-10">
             <div
                 class="pointer-events-auto flex flex-initial flex-col gap-8 lg:flex-col lg:justify-between lg:gap-6">
-                <a href="/" class="text-5xl font-bold leading-normal">
+                <a href="/" class="text-h1 font-display">
                     {{ .Site.Title }}
                 </a>
                 <!-- main navbar -->
                 <ul
                     id="nav-menu"
-                    class="navbar-nav pointer-events-auto order-3 flex gap-4 lg:flex-col lg:gap-3 text-accent-foreground">
+                    class="navbar-nav pointer-events-auto order-3 flex gap-4 text-accent-foreground lg:flex-col lg:gap-3">
                     {{ $currentPage := . }}
                     {{ range site.Menus.main }}
                         {{ $menuURL := .URL | absLangURL }}
@@ -113,9 +113,27 @@
                     {{ end }}
                 </ul>
             </div>
+            <div class="hidden flex-col gap-4 lg:flex">
+                <ul
+                    id="nav-menu"
+                    class="navbar-nav text-right pointer-events-auto order-3 flex gap-4 text-accent-foreground lg:flex-col lg:gap-3">
+                    {{ $currentPage := . }}
+                    {{ range site.Params.connect.links }}
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active"
+                                target="_blank"
+                                rel="noopener"
+                                href=""
+                                >{{ . }}</a
+                            >
+                        </li>
+                    {{ end }}
+                </ul>
+            </div>
         </header>
         <main class="full-width relative row-start-2 row-end-3 self-stretch">
-            <div>
+            <div class="pb-10 text-justify [&_p]:mb-2">
                 {{ block "page" . }}
                     <!-- Page Content from page/single.html, _default/<single/list>.html, index.html -->
                 {{ end }}

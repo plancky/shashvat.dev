@@ -1,0 +1,14 @@
+@import "fonts";
+
+
+h1 {
+    @apply text-h1 mb-4 first:mt-0 mt-8 font-display;
+}
+
+h2 {
+    @apply text-h2 mb-4 mt-8 font-display;
+}
+
+h3, h4 {
+    @apply text-h3 mt-2 font-display;
+}

@@ -1,6 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require("tailwindcss/colors");
 
+const genFontSizes = (obj) =>
+    Object.entries(obj).reduce(
+        (acc, val) => ({
+            ...acc,
+            [val[0]]: [
+                val[1][0],
+                {
+                    lineHeight: val[1][1],
+                    letterSpacing: val[1][2],
+                    fontWeight: val[1][3],
+                },
+            ],
+        }),
+        {},
+    );
+
 module.exports = {
     content: [
         "./layouts/**/*.{html,css,js,md}",
@@ -10,10 +26,17 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                body: ["Sarabun"],
-                display: [],
+                body: ["Inter", "sans-serif"],
+                display: ["Averia Serif Libre", "serif"],
                 button: ["Orbitron", "sans-serif"],
             },
+            fontSize: genFontSizes({
+                h1: ["3.5rem", "1.2", "-0.3%", "400"],
+                h2: ["2.5rem", "1.2", "-0.3%", "400"],
+                h3: ["1.5rem", "2rem", "-0.01rem", "300"],
+                subheading: ["1rem", "2rem", "-0.01rem", "400"],
+                body: ["1rem", "1", "1", "400"],
+            }),
             colors: {
                 background: "hsl(var(--background))",
                 foreground: "hsl(var(--foreground))",

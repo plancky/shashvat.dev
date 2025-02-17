@@ -15,8 +15,3 @@ description: Hello there! I used to be an aspiring Physicist but now I develop s
     <h2>Math, Physics and CS</h2>
     -->
 </section>
-<section
-    class="full-width absolute max-h-full overflow-hidden row-span-full opacity-70 -z-10"
->
-    <canvas id="my_image" class="overflow-hidden w-full h-full"></canvas>
-</section>
