@@ -6,7 +6,7 @@ let lineStroke = 1.3;
 let fps = 60;
 let timestep = 0.001;
 let time = 0;
-const strokeColor = `HSL(${document.querySelector("body").style.getPropertyValue("--accent")})`;
+const strokeColor = () => `HSL(${document.querySelector("body").style.getPropertyValue("--accent")})`;
 
 console.log(strokeColor);
 
@@ -92,7 +92,7 @@ const drawCircle = (
     ctx.stroke();
 };
 
-const drawLine = (ctx, x1, y1, x2, y2, stroke = 1, color = strokeColor) => {
+const drawLine = (ctx, x1, y1, x2, y2, stroke = 1, color = strokeColor()) => {
     ctx.beginPath();
     ctx.lineWidth = stroke;
     ctx.moveTo(x1, y1);
@@ -101,7 +101,7 @@ const drawLine = (ctx, x1, y1, x2, y2, stroke = 1, color = strokeColor) => {
     ctx.stroke();
 };
 
-const drawCurve = (ctx, pointsArr) => {
+const drawCurve = (ctx, pointsArr, color) => {
     for (let i = 0; i < pointsArr.length; i++) {
         if (pointsArr[i + 1])
             drawLine(
@@ -111,12 +111,12 @@ const drawCurve = (ctx, pointsArr) => {
                 pointsArr[i + 1].x,
                 pointsArr[i + 1].y,
                 lineStroke,
-                strokeColor,
+                color,
             );
     }
 };
 
-const epicycles = (ctx, x, y, time, rotation, fourier, draw = true) => {
+const epicycles = (ctx, x, y, time, rotation, fourier, draw = true, color) => {
     for (let i = 0; i < fourier.length; i++) {
         const prevX = x;
         const prevY = y;
@@ -129,7 +129,7 @@ const epicycles = (ctx, x, y, time, rotation, fourier, draw = true) => {
         x += radius * Math.cos(2 * Math.PI * freq * time + phase + rotation);
         y += radius * Math.sin(2 * Math.PI * freq * time + phase + rotation);
         if (draw) {
-            drawLine(ctx, prevX, prevY, x, y, circleStroke * 0.2);
+            drawLine(ctx, prevX, prevY, x, y, circleStroke * 0.2, color);
             drawCircle(
                 ctx,
                 prevX,
@@ -137,7 +137,7 @@ const epicycles = (ctx, x, y, time, rotation, fourier, draw = true) => {
                 radius,
                 circleStroke,
                 false,
-                strokeColor,
+                color,
             );
             //if (i === fourier.length - 1) drawCircle(x, y, 2, true);
         }
@@ -150,6 +150,7 @@ const startDrawing = (
     x = canvas.width / 2,
     y = canvas.height / 2,
     dt = 0.001,
+    color = strokeColor()
 ) => {
     const ctx = inptcurve.ctx();
     if (inptcurve.t <= 1.1) {
@@ -161,6 +162,7 @@ const startDrawing = (
             0,
             inptcurve.coeffs,
             !inptcurve.stopflag,
+            color
         );
         inptcurve.graphpoints.unshift(points);
     } else {
@@ -168,7 +170,7 @@ const startDrawing = (
             inptcurve.stopflag = 1;
         }
     }
-    drawCurve(ctx, inptcurve.graphpoints);
+    drawCurve(ctx, inptcurve.graphpoints, color);
     inptcurve.t += dt;
 };
 

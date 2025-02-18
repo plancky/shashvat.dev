@@ -212,7 +212,7 @@ Therefore the unbiased exponent ranges between $1-1023 = -1022\leq \text{exponen
 
 The interval between these two numbers gives us the **usable range** on the positive side of the number line.
 
-<div class="image_container !bg-primary">
+<div class="image_container [.dark_&]!bg-primary">
 
 ![Image](./realmap.png)
 

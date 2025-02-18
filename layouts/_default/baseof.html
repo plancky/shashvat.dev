@@ -26,7 +26,7 @@
             <div
                 class="2xl:!content-gap-left pointer-events-auto flex flex-initial flex-col gap-8 2xl:flex-col 2xl:justify-between 2xl:gap-6">
                 <a href="/" class="flex flex-wrap font-display text-h1">
-                    <span>Shashvat</span><span>.dev</span>
+                    <span>shashvat</span><span>.dev</span>
                 </a>
                 <!-- main navbar -->
                 <ul
@@ -82,7 +82,8 @@
                                 </ul>
                             </li>
                         {{ else }}
-                            <li class="nav-item w-fit [&:hover_.underliner]:w-full">
+                            <li
+                                class="nav-item w-fit [&:hover_.underliner]:w-full">
                                 <a
                                     class="nav-link {{ if $active }}
                                         active
@@ -117,10 +118,51 @@
                     {{ end }}
                 </ul>
             </div>
-            <div class="2xl:!content-gap-right hidden flex-col gap-4 2xl:flex">
+            <div
+                class="2xl:!content-gap-right pointer-events-auto flex flex-col items-end gap-4">
+                <div class="w-fit self-end text-right">
+                    <button id="theme-switch" class="font-display italic">
+                        Turn
+                        <span id="label" class="[.dark_&]:hidden">off</span>
+                        <span id="label" class="hidden [.dark_&]:inline-block">
+                            on
+                        </span>
+                        the light
+                    </button>
+                    <script>
+                        document
+                            .querySelector("#theme-switch")
+                            .addEventListener("click", (e) => {
+                                const btn = e.target;
+                                document
+                                    .querySelector("body")
+                                    .classList.toggle("dark");
+                                window.accentColor.lightness =
+                                    window.accentColor.get_lightness();
+                                window.accentColor.set();
+                            });
+                    </script>
+                </div>
+                <div class="w-fit self-end text-right 2xl:hidden">
+                    <button
+                        id="connect-menu-switch"
+                        class="font-display italic">
+                        connect
+                    </button>
+                    <script>
+                        document
+                            .querySelector("#connect-menu-switch")
+                            .addEventListener("click", (e) => {
+                                const btn = e.target;
+                                document
+                                    .querySelector("#connect-menu")
+                                    .classList.toggle("open");
+                            });
+                    </script>
+                </div>
                 <ul
-                    id="nav-menu"
-                    class="navbar-nav pointer-events-auto order-3 flex gap-4 text-right text-accent-foreground 2xl:flex-col 2xl:gap-3">
+                    id="connect-menu"
+                    class="navbar-nav pointer-events-auto order-3 hidden flex-col gap-1 text-right text-accent-foreground 2xl:flex 2xl:gap-3 [&.open]:flex">
                     {{ $currentPage := . }}
                     {{ range site.Params.connect.links }}
                         <li class="nav-item">
@@ -137,7 +179,8 @@
             </div>
         </header>
         <main class="full-width relative row-start-2 row-end-3 self-stretch">
-            <div class="pb-10 text-justify full-width-gridless content-grid [&_p]:mb-2">
+            <div
+                class="full-width-gridless content-grid pb-10 text-justify [&_p]:mb-2">
                 {{ block "page" . }}
                     <!-- Page Content from page/single.html, _default/<single/list>.html, index.html -->
                 {{ end }}
