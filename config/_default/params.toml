@@ -10,4 +10,7 @@ katex = true
 main="Shash"
 
 [connect]
-links = ["shashvat817@gmail.com", "@shashvat817"]
+links = ["email: shashvat817@gmail.com", "x: @planck0"]
+mail="shashvat817@gmail.com"
+twitter="@planck0"
+

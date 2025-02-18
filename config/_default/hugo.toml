@@ -1,6 +1,6 @@
-baseURL = 'https://plancky.github.io/shashvat.dev'
+baseURL = 'https://plancky.github.io/'
 languageCode = 'en-us'
-title = "Shashvat.dev"
+title = "shash.cc"
 
 [markup.goldmark.renderer]
 unsafe = true
