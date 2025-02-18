@@ -6,9 +6,17 @@ h1 {
 }
 
 h2 {
-    @apply text-h2 mb-4 mt-8 font-display;
+    @apply text-h2 mb-4 mt-8 font-display text-left;
 }
 
 h3, h4 {
-    @apply text-h3 mt-2 font-display;
+    @apply text-h3 mb-4 mt-8 font-display text-left;
+}
+
+strong {
+    @apply text-accent-foreground;
+}
+
+ol {
+    @apply list-decimal ml-4;
 }

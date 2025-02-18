@@ -1,0 +1,6 @@
+<blockquote class="flex flex-initial py-2 bg-secondary text-secondary-foreground lg:pr-5 px-4 my-2 gap-3">
+    <div class="h-full flex-grow-0 flex-shrink-0 !w-[2px] bg-accent lg:block hidden"></div>
+    <div class="max-w-full">
+        {{ .Inner | .Page.RenderString }}
+    </div>
+</blockquote>

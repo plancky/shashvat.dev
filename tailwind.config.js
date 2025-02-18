@@ -33,9 +33,9 @@ module.exports = {
             fontSize: genFontSizes({
                 h1: ["3.5rem", "1.2", "-0.3%", "400"],
                 h2: ["2.5rem", "1.2", "-0.3%", "400"],
-                h3: ["1.5rem", "2rem", "-0.01rem", "300"],
-                subheading: ["1rem", "2rem", "-0.01rem", "400"],
-                body: ["1rem", "1", "1", "400"],
+                h3: ["2rem", "1", "-0.3%", "400"],
+                subheading: ["1.2rem", "1.4", "1", "300"],
+                body: ["1rem", "1.4", "1", "400"],
             }),
             colors: {
                 background: "hsl(var(--background) / var(--tw-bg-opacity))",
@@ -72,7 +72,8 @@ module.exports = {
                 },
                 destructive: {
                     DEFAULT: "hsl(var(--destructive)/ var(--tw-bg-opacity) )",
-                    foreground: "hsl(var(--destructive-foreground)/ var(--tw-text-opacity))",
+                    foreground:
+                        "hsl(var(--destructive-foreground)/ var(--tw-text-opacity))",
                 },
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",

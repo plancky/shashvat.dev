@@ -3,4 +3,8 @@
 <title>{{ .Page.Params.Title }}</title>
 <meta name="description" content="{{ .Page.Params.Description }}" />
 <meta name="author" content="{{ .Site.Params.Author.Name }}" />
-<meta name="keywords" content="{{ .Page.Params.Keywords }}" />
+
+{{ with .Page.Params.tags }}
+    {{ $keywords := delimit . ", " }}
+    <meta name="keywords" content="{{ $keywords }}" />
+{{ end }}

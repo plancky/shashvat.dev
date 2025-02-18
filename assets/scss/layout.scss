@@ -8,20 +8,16 @@
 }
 
 div.image_container {
-    @apply breakout flex items-center justify-center bg-accent px-2 py-10 bg-opacity-50;
+    @apply breakout flex items-center justify-center bg-secondary px-2 py-10 ;
 }
 
 pre code {
     @apply block;
 }
 
-blockquote {
-    @apply bg-secondary text-secondary-foreground;
-}
-
 div.content_container,
 div.image_container,
-blockquote,
+.katex-display,
 pre code {
     @apply my-5 max-w-full overflow-auto px-2 py-5;
 }

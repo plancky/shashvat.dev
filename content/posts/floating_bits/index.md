@@ -1,6 +1,7 @@
 ---
 title: "Floating-point representation"
 date: 2021-10-17
+updated_at: 2025-02-18
 description: "What do Roman numerals, Tally marks, Decimal and Binary number systems have in common? They are all used to describe Quantity or the number of things, each with its unique style motivated by a particular usecase. "
 draft: false
 meta_image: floating_bits_images/realmap.png
@@ -20,23 +21,20 @@ categories:
     - Computer Science
 ---
 
-{{< notice info >}}
-No pre-requisites required
-{{< /notice >}}
-
-## Number System
-
 What do Roman numerals, Tally marks, Decimal and Binary number systems have in common? They are all used to describe **Quantity** or the **number of things**, each with its unique style motivated by a particular usecase.
 Tally Marks exist from the primitive ages and were probably made to keep track of the stock of apples left and Roman numerals were invented to write relatively large quantities probably to ledger cash, it would not be really fun writing hundred or even a thousand in tally marks.
+
+## Number System
 
 Decimal system is the one with which you grew up with, atleast I did, which came to be after humanity invented `0` which comes really handy while simplifying fractions, it is also called the Base 10 system because we have 10 Basic **states** or **configurations** or **symbols** to work with, namely `0,1,2,3,4,5,6,7,8,9`.
 The decimal number system has two main attributes indices(place), base.
 
-> In the Decimal system, a number is represented by a list of digits from 0 to 9, where each digit represents the coefficient for a power of 10 determined by it's place.
-
-> Mathematically, if N is any number, its decimal equivalent $$x_b x_{b-1} \cdots x_1 x_0 . x_{-1} \cdots x_{a+1} x_{a}$$ has the relation,
-> $$N = \sum_{i=a}^b{x_i 10^i}$$
-> where $x_i = {0,1,\dots 9}$
+{{< blockquote >}}
+In the Decimal system, a number is represented by a list of digits from 0 to 9, where each digit represents the coefficient for a power of 10 determined by it's place.
+Mathematically, if N is any number, its decimal equivalent $$x_b x_{b-1} \cdots x_1 x_0 . x_{-1} \cdots x_{a+1} x_{a}$$ has the relation,
+$$N = \sum_{i=a}^b{x_i 10^i}$$
+where $x_i = {0,1,\dots 9}$
+{{< /blockquote >}}
 
 look at the following examples,
 $$114.5 = 1\cdot10^2 + 1\cdot10^1 + 4\cdot 10^0 + 5\cdot10^{-1}$$
@@ -44,11 +42,12 @@ $$11.64 = 1\cdot10^1 + 1\cdot 10^0 + 6\cdot10^{-1} + 4\cdot10^{-2}$$
 
 Now, the binary (meaning "two") number system is defined similarly but with a base of 2,
 
-> In the Binary system, a number is represented by 0 or 1, where each digit represents the coefficient for a power of 2 for it's place.
-
-> Mathematically, if N is a any number, its binary equivalent $$x_b x_{b-1} \cdots x_1 x_0 . x_{-1} \cdots x_{a+1} x_{a}$$ has the relation,
-> $$ N = \sum\_{i=a}^b{x_i 2^i} $$
-> where $x_i = {0,1}$
+{{< blockquote >}}
+In the Binary system, a number is represented by 0 or 1, where each digit represents the coefficient for a power of 2 for it's place.
+Mathematically, if N is a any number, its binary equivalent $$x_b x_{b-1} \cdots x_1 x_0 . x_{-1} \cdots x_{a+1} x_{a}$$ has the relation,
+$$ N = \sum\_{i=a}^b{x_i 2^i} $$
+where $x_i = {0,1}$
+{{< /blockquote >}}
 
 $$ (1001)\_2 = 1\cdot2^3 + 0\cdot 2^2 + 0\cdot2^1 + 1\cdot2^0 = 9 $$
 $$ (1001.01)\_2 = 1\cdot2^3 + 0\cdot 2^2 + 0\cdot2^1 + 1\cdot2^0 + 0\cdot2^{-1} + 1\cdot2^{-2} = 9.25 $$
@@ -84,7 +83,7 @@ $ {(18.625 \times 2^{3} )}\_{10} = (149)\_{10}= (10010101)\_2 $
 
 Here the number $18.625$ is stored in memory as
 
-<div class="image_container">
+<div class="image_container !bg-primary bg-opacity-25">
     <img src="./drawing.png" alt="drawing" width="400"/>
 </div>
 
@@ -92,10 +91,10 @@ Here the number $18.625$ is stored in memory as
 
 |  Binary  | Internal Fixed point representation |
 | :------: | :---------------------------------: |
-| 101.110  | 101110                              |
-|  101.11  | 101110                              |
-|  101.10  | 101100                              |
-| 101.1101 | 101110                              |
+| 101.110  |               101110                |
+|  101.11  |               101110                |
+|  101.10  |               101100                |
+| 101.1101 |               101110                |
 
 </div>
 
@@ -130,19 +129,23 @@ To put it simply, error is best recognized when it is compared to the magnitude 
 
 On the same train of thought, notice that you must have more configurations in your number system reprensenting small real numbers than larger ones. This idea was at the core of all numerical work we did and led to the creation of several different **floating point** representations for binary,
 
-> so many infact that it became difficult for programmers to make design software with all these different floating point hardware units floating around.
-> including the **IEEE's standard for floating-point arithmetic, the IEEE 754** which is a number system that became immesenly popular among computers after its establishment in 1985.
+{{< blockquote >}}
+so many infact that it became difficult for programmers to make design software with all these different floating point hardware units floating around.
+including the **IEEE's standard for floating-point arithmetic, the IEEE 754** which is a number system that became immesenly popular among computers after its establishment in 1985.
+{{< /blockquote >}}
 
 ## Floating-point numbers (floats)
 
 Aha !! we already have an representation for to deal with scientific quantities,
 It's called the scientific notation and goes something like this,
 
-> All decimal numbers $N$ can be written in the form,
-> $$ N = m \times 10^n $$
->
-> - where $n$ is called the **exponent** and helps "float" the decimal point around,
-> - $m$ is called the **significand** which is a nonzero decimal number such that $0<|m|<10$ and it simply ensures that each decimal number has only one scientific notation(one-one mapping), a notation with this feature is called a **normalized notation**.
+{{< blockquote >}}
+All decimal numbers $N$ can be written in the form,
+$$ N = m \times 10^n $$
+
+- where $n$ is called the **exponent** and helps "float" the decimal point around,
+- $m$ is called the **significand** which is a nonzero decimal number such that $0<|m|<10$ and it simply ensures that each decimal number has only one scientific notation(one-one mapping), a notation with this feature is called a **normalized notation**.
+  {{< /blockquote >}}
 
 As we pointed out in our discussion of scientific notation for decimal numbers, the decimal point is no longer fixed but its position is determined by another integer called the **exponent**. Let's discuss more about floating point representation in binary by discussing the **IEEE 754** standard for floating point arithemetic followed while designing all modern computers to handle float numbers.
 
@@ -152,13 +155,15 @@ In 1985, **[Institute of Electrical and Electronics Engineers](https://www.ieee.
 
 Analogous to the scientific notation,
 
-> Any IEEE 754 standard float gets stored in accordance with this notation, binary number B can be represented as,
-> $$ B = (-1)^S (1.M)\times 2^{E-E_b} $$
->
-> - where S is called the **sign bit** and determines the sign of $B$, we no longer use 2's complement to find the additive inverse in this system, instead we just flip the sign bit.
-> - recall from earlier that (1.M) is nothing but the significand, since normalization demands that the leading digit is nonzero, we end up fixing a 1 there and therfore it need not be stored. If $(M)\_{2}$ is called the **mantissa** and gets read as, \\[ (M)\_{10} = \sum_{i=-c}^{-1} m\_i 2^i \\]
->   where $c$ is the maximum number of bits $m_i$ allocated to M.
-> - The **exponent** $(E-E_b)_{10}$ does the job of moving the binary point of the significand around just like in the scientific notation. Here biased exponent $(E)_2$ gets stored in the memory and when being retrieved the bias $(E_b)_2$ is subracted from it to get the value of exponent.
+{{< blockquote >}}
+Any IEEE 754 standard float gets stored in accordance with this notation, binary number B can be represented as,
+$$ B = (-1)^S (1.M)\times 2^{E-E_b} $$
+
+- where S is called the **sign bit** and determines the sign of $B$, we no longer use 2's complement to find the additive inverse in this system, instead we just flip the sign bit.
+- recall from earlier that (1.M) is nothing but the significand, since normalization demands that the leading digit is nonzero, we end up fixing a 1 there and therfore it need not be stored. If $(M)\_{2}$ is called the **mantissa** and gets read as, \\[ (M)\_{10} = \sum_{i=-c}^{-1} m\_i 2^i \\]
+  where $c$ is the maximum number of bits $m_i$ allocated to M.
+- The **exponent** $(E-E_b)_{10}$ does the job of moving the binary point of the significand around just like in the scientific notation. Here biased exponent $(E)_2$ gets stored in the memory and when being retrieved the bias $(E_b)_2$ is subracted from it to get the value of exponent.
+  {{< /blockquote >}}
 
 IEEE standards are classified on the bases of number of bits that are allocated to store the float.
 | IEEE standard | No. of bits in memory |
@@ -173,17 +178,19 @@ On the other hand when the value to be returned is larger than the largest possi
 
 <div class="overflow-auto">
 
-|E|M(base 10)|S|Value|
-|---|---|---|---|
-|$(1\dots1)_2$|0|0|inf (positive infinity)|
-|$(1\dots1)_2$|0|1|-inf(negative infinity)|
-|$(1\dots1)_2$|non-zero|0,1|nan (not a number)|
-|$(0\dots0)_2$|0|0,1|0|
-|$(0\dots0)_2$|non-zero|0,1|Subnormal number|
+| E             | M(base 10) | S   | Value                   |
+| ------------- | ---------- | --- | ----------------------- |
+| $(1\dots1)_2$ | 0          | 0   | inf (positive infinity) |
+| $(1\dots1)_2$ | 0          | 1   | -inf(negative infinity) |
+| $(1\dots1)_2$ | non-zero   | 0,1 | nan (not a number)      |
+| $(0\dots0)_2$ | 0          | 0,1 | 0                       |
+| $(0\dots0)_2$ | non-zero   | 0,1 | Subnormal number        |
 
 </div>
 
-> NOTE : From the table you must have noticed that the number 0 has two representations, one for each sign bit, that is why you will see Python and other languages printing -0 during computations.
+{{< blockquote >}}
+NOTE : From the table you must have noticed that the number 0 has two representations, one for each sign bit, that is why you will see Python and other languages printing -0 during computations.
+{{< /blockquote >}}
 
 ### The usable range and the machine epsilon
 
@@ -205,21 +212,24 @@ Therefore the unbiased exponent ranges between $1-1023 = -1022\leq \text{exponen
 
 The interval between these two numbers gives us the **usable range** on the positive side of the number line.
 
-<div class="image_container">
+<div class="image_container !bg-primary">
 
 ![Image](./realmap.png)
+
 </div>
 
 Each float value is at a certain **gap** from it's neighbouring values if we view the values on the real number line. That is what allows us to cover such a large range of values.
 
 If $N_1$ is a float then it's smallest increment $N_2$ can be produced by adding $(00\dots01)_2 = 2^{-52}$ to the mantissa.
+
+<div class="content_container">
 $$ N_1 = (1.M_1) \times 2^{E-E_b}$$
 $$ N_2 = (1.M_1 + 2^{-52}) \times 2^{E-E_b}$$
 $$ \epsilon(E-E_b) = N_2 - N_1 = 2^{-52} \times 2^{E-E_b} = 2^{E-E_b-52} $$
 $$ \text{Machine epsilon} = \epsilon(1) = 2^{-52} = 2.220446049250313e-16 $$
+</div>
 
 The gap for any float value belonging different IEEE precisions can be obtained using `numpy.spacing` function.
-
 
 ```Python
 >>> x = np.single(1)
@@ -233,9 +243,9 @@ The gap for any float value belonging different IEEE precisions can be obtained 
 0.000977
 ```
 
-Although $\epsilon(E-E_b)$ which represents the **gap** varies with the exponent, the relative error is roughly equal to the **machine epsilon** . This constant is useful as it represents the relative error in every real value represented using inexact floats.
+Although $\epsilon(E-E_b)$ which represents the **gap** varies with the exponent, the relative error is roughly equal to the **machine epsilon**. This constant is useful as it represents the relative error in every real value represented using inexact floats.
 
-> You can directly get the information about the float using,
+You can directly get the information about the float using,
 
 ```Python
 >>> import sys

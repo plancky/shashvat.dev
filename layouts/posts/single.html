@@ -1,6 +1,22 @@
-{{ define "page"}}
-<h1>
-    {{ .Title }}
-</h1>
-{{ .Content | safeHTML }}
-{{end}}
+{{ define "page" }}
+    <div class="mb-8 flex flex-col gap-10">
+        <div class="flex flex-col gap-4">
+            <h1>
+                {{ .Title }}
+            </h1>
+            <p class="text-subheading">
+                {{ .Description | markdownify | safeHTML }}
+            </p>
+        </div>
+        <div class="flex gap-4">
+            <span>{{ .Date | time.Format ":date_medium" }} </span>
+            {{ with .Params.updated_at }}
+                <span
+                    >(<span>Updated: </span>
+                    {{ . | time.Format ":date_medium" }})</span
+                >
+            {{ end }}
+        </div>
+    </div>
+    {{ .Content | safeHTML }}
+{{ end }}
