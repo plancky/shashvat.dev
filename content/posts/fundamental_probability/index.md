@@ -39,7 +39,7 @@ Uncertainity in determining the outcome of any process, termed as **experiment**
 
 Let us break the above example down and build a common vocabulary to work with,
 
-We call a single performance of an experiment a **trial** and each possible result an **outcome**. Comparing with the above example **every date is a trial**, no punn intended and all the delays in arrival "KJ was 10mins late, Astra 30, Skye 15 ........" each one of these are **outcomes**.
+We call a single performance of an experiment a **trial** and each possible result an **outcome**. Comparing with the above example **every date is a trial**, no punn intended and all the delays in arrival "KJ was 10mins late, Astra 30, Skye 15........" each one of these are **outcomes**.
 
 The set $\{10,30,15,20,60\}$ is then called the sample space of the experiment. Thus, the **sample space** $S$ of the experiment is then the set of all possible outcomes of an individual trial.
 

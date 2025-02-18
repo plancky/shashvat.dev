@@ -4,6 +4,8 @@
 <meta name="description" content="{{ .Page.Params.Description }}" />
 <meta name="author" content="{{ .Site.Params.Author.Name }}" />
 
+<base href="{{ .Site.BaseURL }}" />
+
 {{ with .Page.Params.tags }}
     {{ $keywords := delimit . ", " }}
     <meta name="keywords" content="{{ $keywords }}" />
