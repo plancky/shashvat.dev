@@ -1,16 +1,16 @@
 @import "fonts";
 
-
 h1 {
-    @apply text-h1 mb-4 first:mt-0 mt-8 font-display;
+    @apply mb-4 mt-8 font-display text-xl first:mt-0 lg:text-2xl;
 }
 
 h2 {
-    @apply text-h2 mb-4 mt-8 font-display text-left;
+    @apply mb-4 mt-8 text-left font-display text-lg;
 }
 
-h3, h4 {
-    @apply text-h3 mb-4 mt-8 font-display text-left;
+h3,
+h4 {
+    @apply mb-4 mt-8 text-left font-display text-md;
 }
 
 strong {
@@ -18,5 +18,5 @@ strong {
 }
 
 ol {
-    @apply list-decimal ml-4;
+    @apply ml-4 list-decimal;
 }

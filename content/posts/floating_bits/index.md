@@ -84,7 +84,9 @@ $ {(18.625 \times 2^{3} )}\_{10} = (149)\_{10}= (10010101)\_2 $
 Here the number $18.625$ is stored in memory as
 
 <div class="image_container !bg-primary bg-opacity-25">
-    <img src="./drawing.png" alt="drawing" width="400"/>
+
+![Floating point](./drawing.png)
+
 </div>
 
 <div>

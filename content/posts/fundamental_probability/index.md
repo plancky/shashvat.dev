@@ -62,7 +62,9 @@ In the general case, When the probabilities are combined to calculate the probab
 $$P(B) = \sum_{i} P(A_i \cap B)$$
 
 <div class="image_container !p-0" >
-<img class="w-full" src="./two_event_venn_2.png" alt="two_event_venn_2" width="1000"/>
+
+![two_event_venn_2](./two_event_venn_2.png)
+
 </div>
 
 ## Conditional Probability
