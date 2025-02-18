@@ -3,11 +3,43 @@
         @apply mobile-padding lg:desktop-padding;
         --page-padding: 80px;
         --mobile-page-padding: 32px;
-        --page-width: 1080px;
+        --page-width: 980px;
     }
 }
 
-@layer base {
+div.image_container {
+    @apply breakout flex items-center justify-center bg-accent px-2 py-10 bg-opacity-50;
+}
+
+pre code {
+    @apply block;
+}
+
+blockquote {
+    @apply bg-secondary text-secondary-foreground;
+}
+
+div.content_container,
+div.image_container,
+blockquote,
+pre code {
+    @apply my-5 max-w-full overflow-auto px-2 py-5;
+}
+
+table {
+    @apply mx-auto my-5 max-w-full table-fixed overflow-scroll;
+}
+
+thead {
+    @apply bg-accent bg-opacity-50;
+}
+
+td,
+th {
+    @apply border-y-2 border-primary px-4 py-2;
+}
+
+@layer utilities {
     /*Layout*/
     .desktop-padding {
         --padding-inline: var(--page-padding, 80px);
@@ -32,21 +64,21 @@
         );
 
         display: grid;
-        grid-template-columns: [full-width-start] minmax(
+        grid-template-columns:
+            [full-width-start] minmax(
                 calc(var(--padding-inline) - var(--breakout-size)),
                 1fr
-            ) [breakout-start] minmax(
-                0,
-                var(--breakout-size)
-            ) [content-start] calc(var(--content-area-width) / 2) [middle] calc(
+            )
+            [breakout-start] minmax(0, var(--breakout-size))
+            [content-start] calc(var(--content-area-width) / 2) [middle] calc(
                 var(--content-area-width) / 2
-            ) [content-end] minmax(
-                0,
-                var(--breakout-size)
-            ) [breakout-end] minmax(
+            )
+            [content-end] minmax(0, var(--breakout-size))
+            [breakout-end] minmax(
                 calc(var(--padding-inline) - var(--breakout-size)),
                 1fr
-            ) [full-width-end];
+            )
+            [full-width-end];
     }
 
     .content-grid

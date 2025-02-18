@@ -1,6 +1,6 @@
 baseURL = 'https://hashvats.me/'
 languageCode = 'en-us'
-title = "Shash.net"
+title = "Shashvat.dev"
 
 [markup.goldmark.renderer]
 unsafe = true

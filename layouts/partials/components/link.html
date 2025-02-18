@@ -1,0 +1,14 @@
+<div class="w-fit [&:hover_.underliner]:w-full">
+    <a
+        {{ if findRE `^http` .link_permalink }}
+            target="_blank" rel="noopener"
+        {{ end }}
+        class="text-h2 transition-all duration-300"
+        href="{{ .link_permalink }}"
+        >{{ .link_name }}</a
+    >
+    <div class="relative h-1 w-full">
+        <div class="absolute h-1 w-full bg-foreground transition-all"></div>
+        <div class="underliner absolute h-1 w-0 bg-accent transition-all"></div>
+    </div>
+</div>

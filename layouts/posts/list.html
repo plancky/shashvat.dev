@@ -1,13 +1,13 @@
-{{ define "page" }} 
-<section>
-
-    {{.Title}}
-    <ul>
-        {{ range .RegularPages }}
-        <li>
-            <a href="{{ .RelPermalink }}">{{ or .Title .RelPermalink }}</a>
-        </li>
-        {{ end }}
-    </ul>
-</section>
+{{ define "page" }}
+    <section>
+        <ul class="flex flex-col gap-10">
+            {{ range .RegularPages }}
+                <li class="w-fit text-left">
+                    {{ $permalink := .RelPermalink }}
+                    {{ $name := .Title }}
+                    {{ partial "components/link" (dict "context" . "link_permalink" $permalink "link_name" $name ) }}
+                </li>
+            {{ end }}
+        </ul>
+    </section>
 {{ end }}
