@@ -12,7 +12,7 @@
             {{ partial "essentials/katex.html" . }}
         {{ end }}
 
-        {{ $random_color := resources.Get "js/random_color.js" }}
+        {{ $random_color := resources.Get "js/random_color.js" | minify }}
         <script
             type="module"
             src="{{- $random_color.RelPermalink -}}"

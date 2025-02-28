@@ -1,22 +1,26 @@
 {{ define "page" }}
-    <div class="mb-8 flex flex-col gap-10">
-        <div class="flex flex-col gap-4">
-            <h1>
-                {{ .Title }}
-            </h1>
-            <p class="text-subheading">
-                {{ .Description | markdownify | safeHTML }}
-            </p>
+    <div
+        id="PostContainer"
+        class="full-width-gridless content-grid hyphens-auto break-normal break-words text-left lg:text-justify lg:hyphens-none">
+        <div class="mb-8 flex flex-col gap-10">
+            <div class="flex flex-col gap-4">
+                <h1>
+                    {{ .Title }}
+                </h1>
+                <p class="text-subheading">
+                    {{ .Description | markdownify | safeHTML }}
+                </p>
+            </div>
+            <div class="flex gap-4">
+                <span>{{ .Date | time.Format ":date_medium" }} </span>
+                {{ with .Params.updated_at }}
+                    <span
+                        >(<span>Updated: </span>
+                        {{ . | time.Format ":date_medium" }})</span
+                    >
+                {{ end }}
+            </div>
         </div>
-        <div class="flex gap-4">
-            <span>{{ .Date | time.Format ":date_medium" }} </span>
-            {{ with .Params.updated_at }}
-                <span
-                    >(<span>Updated: </span>
-                    {{ . | time.Format ":date_medium" }})</span
-                >
-            {{ end }}
-        </div>
+        {{ .Content | safeHTML }}
     </div>
-    {{ .Content | safeHTML }}
 {{ end }}

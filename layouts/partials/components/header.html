@@ -109,7 +109,7 @@
                     .querySelector("#theme-switch")
                     .addEventListener("click", (e) => {
                         const btn = e.target;
-                        document.querySelector("body").classList.toggle("dark");
+                        window.accentColor.toggle_theme()
                         window.accentColor.lightness =
                             window.accentColor.get_lightness();
                         window.accentColor.set();
