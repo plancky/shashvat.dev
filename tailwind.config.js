@@ -37,6 +37,7 @@ module.exports = {
                 md: ["2rem", "1", "-0.3%", "400"],
                 subheading: ["1.2rem", "1.4", "1", "300"],
                 body: ["1rem", "1.4", "1", "400"],
+                "body_lg": ["1.2rem", "1.4", "1.2", "400"],
             }),
             colors: {
                 background: "hsl(var(--background) / var(--tw-bg-opacity))",
