@@ -99,7 +99,9 @@
             <button id="theme-switch" class="font-display italic">
                 <span>
                     <span class="[.dark_&]:hidden">Give in to darkness</span>
-                    <span class="hidden [.dark_&]:inline-block">Lead me to light</span>
+                    <span class="hidden [.dark_&]:inline-block"
+                        >Lead me to light</span
+                    >
                 </span>
             </button>
         </div>
@@ -118,7 +120,10 @@
                     });
             </script>
         </div>
-        <div id="connect-menu" class="hidden [&.open]:flex lg:!flex">
+        <noscript>
+            {{ partial "components/contact_bullets" . }}
+        </noscript>
+        <div id="connect-menu" class="hidden lg:!flex [&.open]:flex">
             {{ partial "components/contact_bullets" . }}
         </div>
     </div>
