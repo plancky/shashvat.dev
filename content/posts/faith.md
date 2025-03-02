@@ -2,7 +2,7 @@
 title: "It is okay to be irrational"
 date: 2024-03-02
 description: "\"The function of prayer is not to influence God, but rather to change the nature of the one who prays.\" -- Søren Kierkegaard"
-draft: true
+draft: false
 hideToc: true
 enableToc: false
 math: true
