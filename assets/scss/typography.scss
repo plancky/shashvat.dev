@@ -17,6 +17,10 @@ strong {
     @apply text-accent-foreground;
 }
 
+p {
+    @apply lg:mb-2 mb-4;
+}
+
 ol {
     @apply ml-4 list-decimal;
 }
