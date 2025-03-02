@@ -5,15 +5,24 @@ window.accentColor = {
             hue: Math.floor(Math.random() * 360),
             saturation: 100,
         };
-        window.accentColor.lightness = window.accentColor.get_lightness();
+        accentColor.lightness = accentColor.get_lightness();
     },
     init: () => {
         if (localStorage) {
             const theme = localStorage.getItem("theme");
             if (theme == "light") {
-                window.accentColor.toggle_theme();
+                accentColor.toggle_theme();
             }
         }
+
+        document
+            .querySelector("#theme-switch")
+            .addEventListener("click", (e) => {
+                const btn = e.target;
+                accentColor.toggle_theme();
+            });
+        accentColor.gen()
+        accentColor.set()
     },
     set: () => {
         const { hue, saturation, lightness } = window.accentColor;
@@ -27,7 +36,7 @@ window.accentColor = {
         document.querySelector("body").classList.toggle("dark");
         window.accentColor.store();
 
-        window.accentColor.lightness = window.accentColor.get_lightness();
+        window.accentColor.lightness = accentColor.get_lightness();
         window.accentColor.set();
     },
     get_lightness: () => {
@@ -43,6 +52,4 @@ window.accentColor = {
     },
 };
 
-window.accentColor.gen();
-window.accentColor.init();
-window.accentColor.set();
+accentColor.init();

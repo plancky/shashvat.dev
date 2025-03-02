@@ -1,0 +1,30 @@
+<ul
+    class="navbar-nav pointer-events-auto order-3 flex-col gap-1 text-right text-accent-foreground flex 2xl:gap-3">
+    {{ $currentPage := . }}
+    {{ with site.Params.connect }}
+        {{ with .twitter }}
+            {{ $link := . | printf "%s/%s" "https://x.com" }}
+            <li class="nav-item">
+                <a
+                    class="nav-link active"
+                    target="_blank"
+                    rel="noopener"
+                    href="{{ $link }}"
+                    >{{ . }}</a
+                >
+            </li>
+        {{ end }}
+        {{ with  .mail }}
+            {{ $link := . | printf "%s%s" "mailto:" }}
+            <li class="nav-item">
+                <a
+                    class="nav-link active"
+                    target="_blank"
+                    rel="noopener"
+                    href="{{ $link }}"
+                    >{{ "mailto:" }}</a
+                >
+            </li>
+        {{ end }}
+    {{ end }}
+</ul>

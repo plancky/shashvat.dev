@@ -95,23 +95,13 @@
     </div>
     <div
         class="2xl:!content-gap-right pointer-events-auto flex flex-col items-end gap-4">
-        <div class="w-fit self-end text-right">
+        <div class="mt-4 w-fit self-end text-right">
             <button id="theme-switch" class="font-display italic">
-                <span> Turn </span>
-                <span id="label" class="[.dark_&]:hidden">off</span>
-                <span id="label" class="hidden [.dark_&]:inline-block">
-                    on
+                <span>
+                    <span class="[.dark_&]:hidden">Give in to darkness</span>
+                    <span class="hidden [.dark_&]:inline-block">Lead me to light</span>
                 </span>
-                <span> the light </span>
             </button>
-            <script>
-                document
-                    .querySelector("#theme-switch")
-                    .addEventListener("click", (e) => {
-                        const btn = e.target;
-                        window.accentColor.toggle_theme()
-                    });
-            </script>
         </div>
         <div class="w-fit self-end text-right 2xl:hidden">
             <button id="connect-menu-switch" class="font-display italic">
@@ -128,38 +118,8 @@
                     });
             </script>
         </div>
-        <ul
-            id="connect-menu"
-            class="navbar-nav pointer-events-auto order-3 hidden flex-col gap-1 text-right text-accent-foreground 2xl:flex 2xl:gap-3 [&.open]:flex">
-            {{ $currentPage := . }}
-            {{ with site.Params.connect }}
-                {{ with .twitter }}
-                    {{ $link := . | printf "%s/%s" "https://x.com" }}
-                    <li class="nav-item">
-                        <a
-                            class="nav-link active"
-                            target="_blank"
-                            rel="noopener"
-                            href="{{ $link }}"
-                            >{{ . }}</a
-                        >
-                    </li>
-                {{ end }}
-                {{ with  .mail }}
-                    {{ $link := . | printf "%s%s" "mailto:" }}
-                    <li class="nav-item">
-                        <a
-                            class="nav-link active"
-                            target="_blank"
-                            rel="noopener"
-                            href="{{ $link }}"
-                            >{{ 
-                                "mailto:"
-                             }}</a
-                        >
-                    </li>
-                {{ end }}
-            {{ end }}
-        </ul>
+        <div id="connect-menu" class="hidden [&.open]:flex lg:!flex">
+            {{ partial "components/contact_bullets" . }}
+        </div>
     </div>
 </header>
