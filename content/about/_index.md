@@ -2,7 +2,7 @@
 title: "About"
 ---
 
-Hi! I am Shashvat Jain, and I enjoy tinkering with mathematics, computer software.
+Hi! I am Shashvat Jain, and I enjoy tinkering with computer software.
 
 I hold a bachelor's degree in Physics and I am currently a software developer at [487 studios](https://www.foureightseven.studio/), where I am mostly involved in web-realted engineering.
 
