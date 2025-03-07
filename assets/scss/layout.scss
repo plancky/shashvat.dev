@@ -30,6 +30,10 @@ thead {
     @apply bg-accent bg-opacity-50;
 }
 
+#articleContainer a {
+    @apply text-accent-foreground underline;
+}
+
 td,
 th {
     @apply border-y-2 border-primary px-4 py-2;
