@@ -1,0 +1,7 @@
+{{ define "page" }}
+    {{ .Content | safeHTML }}
+    <section
+        class="#w-[1080px] #h-[520px] !fixed inset-0 z-10 row-span-full flex w-full items-center justify-center overflow-hidden text-accent-foreground opacity-70">
+        {{ partial "components/404_illustration" . }}
+    </section>
+{{ end }}

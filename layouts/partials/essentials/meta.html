@@ -3,8 +3,15 @@
 
 <link rel="icon" href="favicon.ico" />
 
-<title>{{ .Page.Params.Title }}</title>
-<meta name="description" content="{{ .Page.Params.Description }}" />
+{{ if eq .Page.Kind "404" }}
+    <title>404 Page Not Found</title>
+    <meta name="description" content="This page doesn't exist." />
+{{ else }}
+    <title>{{ .Page.Params.Title }}</title>
+    <meta name="description" content="{{ .Page.Params.Description }}" />
+{{ end }}
+
+
 <meta name="author" content="{{ .Site.Params.Author.Name }}" />
 
 <base href="{{ .Site.BaseURL }}" />
