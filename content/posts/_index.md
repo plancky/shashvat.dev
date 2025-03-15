@@ -1,4 +1,6 @@
 ---
 title: "Posts"
+aliases:
+- /blog/
 ---
 
