@@ -1,0 +1,58 @@
+{{ with resources.Get "js/main.js" }}
+    {{ $opts := dict
+        "minify" hugo.IsProduction
+        "format" "iife"
+        "sourceMap" (cond hugo.IsProduction "" "external")
+        "targetPath" "js/main.js"
+    }}
+    {{ with . | js.Build $opts }}
+        {{ if hugo.IsProduction }}
+            {{ with . | fingerprint }}
+                <script
+                    defer
+                    src="{{ .RelPermalink }}"
+                    integrity="{{ .Data.Integrity }}"
+                    crossorigin="anonymous"></script>
+            {{ end }}
+        {{ else }}
+            <script src="{{ .RelPermalink }}"></script>
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ $fs_1 := resources.Get "js/shader/coloured_tiles.frag" }}
+<link
+    rel="preload"
+    as="fetch"
+    href="{{ $fs_1.RelPermalink }}"
+    type="text/plain" />
+
+<!--
+{{ with resources.Get "js/shader/setup.js" }}
+    {{ $opts := dict
+        "minify" hugo.IsProduction
+        "format" "iife"
+        "sourceMap" (cond hugo.IsProduction "" "external")
+        "targetPath" "js/shader.js"
+    }}
+    {{ with . | js.Build $opts }}
+        {{ if hugo.IsProduction }}
+            {{ with . | fingerprint }}
+                <script
+                    defer
+                    src="{{ .RelPermalink }}"
+                    integrity="{{ .Data.Integrity }}"
+                    crossorigin="anonymous"></script>
+            {{ end }}
+        {{ else }}
+            <script src="{{ .RelPermalink }}"></script>
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+
+
+
+{{ $random_color := resources.Get "js/random_color.js" | minify }}
+<script type="module" src="{{- $random_color.RelPermalink -}}" defer></script>
+-->

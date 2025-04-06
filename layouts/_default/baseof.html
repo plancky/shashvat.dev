@@ -12,21 +12,17 @@
             {{ partial "essentials/katex.html" . }}
         {{ end }}
 
-        {{ $random_color := resources.Get "js/random_color.js" | minify }}
-        <script
-            type="module"
-            src="{{- $random_color.RelPermalink -}}"
-            defer></script>
+        {{ partialCached "essentials/scripts.html" . }}
     </head>
 
     <body
         class="content-grid dark relative min-h-[100dvh] w-full grid-rows-[auto_1fr_auto] place-content-stretch place-items-stretch bg-background font-body text-foreground">
-        
         {{ partial "components/header" . }}
 
+
         <main class="full-width relative row-start-2 row-end-3 self-stretch">
-            <div
-                class="full-width-gridless content-grid pb-10 text-justify ">
+            <div class="full-width-gridless content-grid pb-10 text-justify">
+                {{ partial "components/glCanvas" . }}
                 {{ block "page" . }}
                     <!-- Page Content from page/single.html, _default/<single/list>.html, index.html -->
                 {{ end }}
@@ -36,8 +32,7 @@
             class="full-width-gridless row-start-3 row-end-4 h-8 2xl:sticky 2xl:bottom-0">
             <div
                 class="full-width h-full bg-accent text-accent-foreground transition-colors duration-500"
-                style="clip-path: ellipse(50% 80% at 50% 100%)">
-            </div>
+                style="clip-path: ellipse(50% 80% at 50% 100%)"></div>
         </footer>
     </body>
 </html>

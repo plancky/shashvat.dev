@@ -1,4 +1,15 @@
+import { hsl2rgb, hslToRgb } from "./hsl_to_rgb.js";
+
 window.accentColor = {
+    get: () => {
+        const hsl = [
+            window.accentColor.hue,
+            window.accentColor.saturation,
+            window.accentColor.lightness,
+        ];
+        const rgb = hslToRgb(...hsl);
+        return { hsl, rgb };
+    },
     gen: () => {
         window.accentColor = {
             ...window.accentColor,
@@ -21,8 +32,8 @@ window.accentColor = {
                 const btn = e.target;
                 accentColor.toggle_theme();
             });
-        accentColor.gen()
-        accentColor.set()
+        accentColor.gen();
+        accentColor.set();
     },
     set: () => {
         const { hue, saturation, lightness } = window.accentColor;
@@ -52,4 +63,7 @@ window.accentColor = {
     },
 };
 
-accentColor.init();
+document.addEventListener("DOMContentLoaded", function () {
+    accentColor.init();
+    console.log(accentColor.get())
+});
