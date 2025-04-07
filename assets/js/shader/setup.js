@@ -1,8 +1,4 @@
-import {
-    initShaderProgram,
-    vsSource,
-    initBuffer,
-} from "./load-shader";
+import { initShaderProgram, vsSource, initBuffer } from "./load-shader";
 
 document.addEventListener("DOMContentLoaded", async function () {
     setupCanvas();
@@ -11,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 function setupCanvas() {
     const canvas = document.getElementById("glCanvas");
-    window.canvas = canvas
+    window.canvas = canvas;
 
     window.gl = canvas?.getContext("webgl");
 
@@ -47,6 +43,7 @@ async function main() {
         },
         uniformLocations: {
             resolution: gl.getUniformLocation(shaderProgram, "u_resolution"), // Get uniform location
+            time: gl.getUniformLocation(shaderProgram, "u_time"), // Get uniform location
             color: gl.getUniformLocation(shaderProgram, "u_color"), // Get uniform location
         },
     };
@@ -93,6 +90,12 @@ function drawScene(gl, programInfo) {
     }
 
     gl.useProgram(programInfo.program);
+
+    // Set the uniform value for u_time.
+    gl.uniform1f(
+        programInfo.uniformLocations.time,
+        (new Date().getTime() % 10000),
+    );
 
     // Set the uniform value for u_resolution.
     gl.uniform2f(

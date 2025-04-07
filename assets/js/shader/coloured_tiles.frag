@@ -1,15 +1,15 @@
 #ifdef GL_ES
-precision mediump float;
+precision lowp float;
 #endif
 
 uniform vec2 u_resolution;
 uniform vec3 u_color;
+uniform float u_time;
 // uniform vec2 u_mouse;
-// uniform float u_time;
 
 float random (vec2 st) {
     return fract(sin(dot(st.xy,
-                         vec2(12.9898,78.233)))*
+                         vec2(12.9898, mod(u_time, 100.0))))*
         43758.5453123);
 }
 
@@ -26,7 +26,7 @@ void main() {
 
     // st *= 20.0; // Scale the coordinate system by 10
     vec2 ipos = floor(st);  // get the integer coords
-    vec2 fpos = fract(st);  // get the fractional coords
+    // vec2 fpos = fract(st);  // get the fractional coords
 
     // Assign a random value based on the integer coord
     vec4 color = vec4(u_color*1.0, random( ipos ) * 1.0);
