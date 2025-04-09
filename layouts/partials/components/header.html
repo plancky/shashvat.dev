@@ -58,11 +58,12 @@
                         </ul>
                     </li>
                 {{ else }}
-                    <li class="nav-item w-fit [&:hover_.underliner]:w-full">
+                    <li
+                        class="nav-item {{ if $active -}}
+                            active
+                        {{- end }} w-fit">
                         <a
-                            class="nav-link {{ if $active }}
-                                active
-                            {{- end -}}"
+                            class="nav-link"
                             {{ if findRE `^http` .URL }}
                                 target="_blank" rel="noopener"
                             {{ end }}
@@ -77,7 +78,7 @@
                         >
                         <div class="relative h-[2px] w-full">
                             <div
-                                class="underliner absolute h-full w-0 bg-accent transition-all"></div>
+                                class="absolute h-full w-0 bg-accent transition-all [.nav-item:hover_&]:w-full [li.active_&]:w-full"></div>
                         </div>
                     </li>
                 {{ end }}
