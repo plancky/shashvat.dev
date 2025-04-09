@@ -16,7 +16,7 @@
                 class="h-full w-full object-cover object-center"
                 alt="Project Thumbnail" />
         </div>
-        <div class="flex h-fit select-text flex-col p-5 w-full">
+        <div class="flex h-fit w-full select-text flex-col p-5">
             <div class="flex flex-col justify-between gap-2">
                 <div>
                     <span class="font-display text-subheading text-accent">
@@ -24,17 +24,15 @@
                     </span>
                     {{ .Content | safeHTML }}
                 </div>
-                <div class="flex lg:flex-row flex-col justify-between text-body">
-                    <div class=" text-start">
-                        <span>
-                            url:
-                            <span>
-                                {{ .Params.Url }}
-                            </span>
+                <div
+                    class="flex flex-col justify-between text-body lg:flex-row">
+                    <div class="text-start">
+                        <span class="text-wrap underline">
+                            {{ .Params.Url }}
                         </span>
                     </div>
                     {{ if isset .Params "Tags" -}}
-                        <ul class="flex gap-2 text-accent flex-wrap py-2">
+                        <ul class="flex flex-wrap gap-2 py-2 text-accent">
                             {{ range $index, $name := .Params.Tags }}
                                 <li>{{ $name }}</li>
                             {{ end }}
