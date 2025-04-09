@@ -8,7 +8,7 @@
 }
 
 div.image_container {
-    @apply breakout flex items-center justify-center bg-secondary px-2 py-10 ;
+    @apply breakout flex items-center justify-center bg-secondary px-2 py-10;
 }
 
 pre code {
@@ -139,10 +139,20 @@ th {
     }
 
     .content-gap-left {
-        grid-column: full-width-start / content-start;
+        grid-column: full-width-start / breakout-start;
     }
 
     .content-gap-right {
-        grid-column: content-end / full-width-end;
+        grid-column: breakout-end / full-width-end;
+    }
+}
+
+@layer base {
+    nav#TableOfContents > ol {
+        @apply flex flex-col gap-1 py-2;
+    }
+
+    nav#TableOfContents > ol > li > ol {
+        @apply flex flex-col gap-1 ml-5 py-2;
     }
 }

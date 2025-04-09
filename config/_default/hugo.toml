@@ -5,6 +5,12 @@ title = "shash.cc"
 [markup.goldmark.renderer]
 unsafe = true
 
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = true
+
 ############################# Modules ############################
 [module]
 [[module.mounts]]

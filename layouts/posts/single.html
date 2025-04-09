@@ -1,7 +1,18 @@
 {{ define "page" }}
     <div
         id="PostContainer"
-        class="full-width-gridless content-grid hyphens-auto break-normal break-words text-left lg:text-justify lg:hyphens-none">
+        class="full-width-gridless content-grid relative h-full grid-rows-[auto_auto_auto] hyphens-auto break-normal break-words text-left lg:hyphens-none lg:text-justify">
+        <div class="content-gap-right relative row-start-1 row-end-4 h-full">
+            {{ if strings.Contains .TableOfContents "li" }}
+                <div
+                    class="sticky top-[14rem] w-full hidden px-4 py-3 text-start 2xl:flex">
+                    <div class="bg-background w-full bg-opacity-75 px-4 py-3">
+                        <span class="text-subheading">Contents</span>
+                        {{ .TableOfContents }}
+                    </div>
+                </div>
+            {{ end }}
+        </div>
         <div class="mb-8 flex flex-col gap-10">
             <div class="flex flex-col gap-4">
                 <h1>
@@ -10,6 +21,16 @@
                 <p class="text-subheading">
                     {{ .Description | markdownify | safeHTML }}
                 </p>
+                {{ if strings.Contains .TableOfContents "li" }}
+                    <div class="flex flex-col 2xl:hidden">
+                        <details class="bg-background bg-opacity-75 px-4 py-3">
+                            <summary>
+                                <span class="text-subheading">Contents</span>
+                            </summary>
+                            {{ .TableOfContents }}
+                        </details>
+                    </div>
+                {{ end }}
             </div>
             <div class="flex gap-4">
                 <span>{{ .Date | time.Format ":date_medium" }} </span>
@@ -21,6 +42,8 @@
                 {{ end }}
             </div>
         </div>
-        {{ .Content | safeHTML }}
+        <div class="full-width-gridless content-grid row-start-2 row-end-[-1]">
+            {{ .Content | safeHTML }}
+        </div>
     </div>
 {{ end }}
