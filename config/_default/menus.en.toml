@@ -14,6 +14,11 @@ name = "Posts"
 url = "/posts"
 weight = 4
 
+[[main]]
+name = "Projects"
+url = "/projects"
+weight = 3
+
 # [[main]]
 # parent = "Pages"
 # name = "Blog"

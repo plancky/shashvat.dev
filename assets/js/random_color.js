@@ -1,5 +1,9 @@
 import { hsl2rgb, hslToRgb } from "./hsl_to_rgb.js";
 
+document.addEventListener("DOMContentLoaded", function () {
+    accentColor.init();
+});
+
 window.accentColor = {
     get: () => {
         const hsl = [
@@ -63,7 +67,3 @@ window.accentColor = {
     },
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-    accentColor.init();
-    console.log(accentColor.get())
-});
