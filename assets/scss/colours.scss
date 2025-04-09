@@ -29,7 +29,9 @@
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
     }
+}
 
+@layer components {
     .dark {
         --background: 240 10% 3.9%;
         --foreground: 0 0% 98%;
@@ -59,8 +61,9 @@
 }
 
 @layer base {
+    /*
     :root {
-        /*
+        
         --clr-primary-hsl-400: 204, 81%, 12%;
         --clr-primary-hsl-500: 0, 0%, 7%;
         --clr-secondary-hsl-400: 42, 44%, 87%;
@@ -107,7 +110,11 @@
         --fs-700: 1.75rem;
         --fs-800: 2rem;
         --fs-900: 5rem;
+        
     }
+    */
+
+    /*
 
     h1 {
         @apply mb-8 mt-4 text-4xl;
@@ -129,6 +136,5 @@
     p {
         @apply text-2xl lg:text-lg lg:leading-relaxed;
     }
-        */
-    }
+    */
 }

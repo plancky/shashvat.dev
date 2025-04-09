@@ -18,6 +18,7 @@ const genFontSizes = (obj) =>
     );
 
 module.exports = {
+    safelist: ["dark"],
     content: [
         "./layouts/**/*.{html,css,js,md}",
         "./content/**/*.md",

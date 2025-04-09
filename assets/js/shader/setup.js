@@ -57,6 +57,7 @@ async function main() {
     // Initial draw and resize handling
     resizeCanvas(); // Call resizeCanvas to set initial size and draw
     window.addEventListener("resize", resizeCanvas); // Set up resize listener
+    window.accentColor.onThemeChange(() => drawScene(gl, PROGRAM_INFO));
 }
 
 function drawScene(gl, programInfo) {
@@ -94,7 +95,7 @@ function drawScene(gl, programInfo) {
     // Set the uniform value for u_time.
     gl.uniform1f(
         programInfo.uniformLocations.time,
-        (new Date().getTime() % 10000),
+        new Date().getTime() % 10000,
     );
 
     // Set the uniform value for u_resolution.
@@ -106,7 +107,7 @@ function drawScene(gl, programInfo) {
 
     // Set the uniform value for u_color.
     if (accentColor) {
-        const rgb = window.accentColor.get().rgb;
+        const rgb = window.accentColor.get_colors().rgb;
         gl.uniform3f(programInfo.uniformLocations.color, ...rgb);
     }
 
