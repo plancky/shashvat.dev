@@ -84,7 +84,7 @@ const main = () => {
         },
         // Check Storage theme settings and if not allowed check media preference
         get_theme_preference: function () {
-            if (localStorage) {
+            if (localStorage.getItem("theme")) {
                 return localStorage.getItem("theme");
             } else if (this.MEDIA_PREFERS_DARK.matches) {
                 return this.THEMES.DARK;
